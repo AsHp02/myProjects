@@ -2,13 +2,16 @@ package com.gemini.api.controller;
 
 
  import com.gemini.api.Serice.GeminiService;
-import com.gemini.api.Serice.GeminiService;
  import com.gemini.api.entity.PormptResponse;
  import com.gemini.api.repo.Repositoryp;
  import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.http.HttpStatus;
+ import org.springframework.http.HttpStatusCode;
  import org.springframework.http.ResponseEntity;
  import org.springframework.web.bind.annotation.*;
 import com.gemini.api.entity.PromptRequest;
+
+ import java.util.ArrayList;
  import java.util.List;
 
 
@@ -46,10 +49,31 @@ public class GeminiController {
         }
     }
 
+    @GetMapping("/getThis")
+    public String getV(){
+        return "its working fine";
+    }
+
 
     @GetMapping("/history")
     public ResponseEntity<List<PormptResponse>> getHistory() {
         return ResponseEntity.ok(repositoryp.findAll());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Integer id) {
+        if (id < 0)  {
+            return new ResponseEntity<>("id not found", HttpStatus.BAD_REQUEST);
+        }
+
+        repositoryp.deleteById(id);
+        return ResponseEntity.ok(id + "Deleted successfully");
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAll(){
+        repositoryp.deleteAll();
+        return new ResponseEntity<>("Deleted all Records",HttpStatus.OK);
     }
 
 

@@ -11,6 +11,8 @@ public class GeminiIntegrationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeminiIntegrationApplication.class, args);
+
+		System.out.println("The system has been started");
 	}
 
 	@Bean

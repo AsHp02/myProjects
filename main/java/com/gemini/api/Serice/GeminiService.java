@@ -77,7 +77,7 @@ public class GeminiService {
                         firstCandidate.get("content").get("parts").isArray()) {
                     JsonNode firstPart = firstCandidate.get("content").get("parts").get(0);
                     if (firstPart != null && firstPart.has("text")) {
-                     generatedText= firstPart.get("text").asText();
+                        generatedText= firstPart.get("text").asText();
                     }
                 }
             }

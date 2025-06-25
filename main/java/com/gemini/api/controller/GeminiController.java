@@ -16,16 +16,12 @@ import com.gemini.api.entity.PromptRequest;
 
 
 @RestController
-
 @RequestMapping("/gemini")
 public class GeminiController {
 
    private final GeminiService geminiService;
-
-
    @Autowired
     Repositoryp repositoryp;
-
 
     // Constructor for dependency injection
     public GeminiController(GeminiService geminiService) {
@@ -54,7 +50,6 @@ public class GeminiController {
         return "its working fine";
     }
 
-
     @GetMapping("/history")
     public ResponseEntity<List<PormptResponse>> getHistory() {
         return ResponseEntity.ok(repositoryp.findAll());
@@ -65,7 +60,6 @@ public class GeminiController {
         if (id < 0)  {
             return new ResponseEntity<>("id not found", HttpStatus.BAD_REQUEST);
         }
-
         repositoryp.deleteById(id);
         return ResponseEntity.ok(id + "Deleted successfully");
     }
@@ -75,6 +69,5 @@ public class GeminiController {
         repositoryp.deleteAll();
         return new ResponseEntity<>("Deleted all Records",HttpStatus.OK);
     }
-
 
 }
